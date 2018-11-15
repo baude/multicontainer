@@ -1,9 +1,20 @@
 import pymysql
 
+
 class DBDemo(object):
     def __init__(self, host, port):
-        self.db = pymysql.connect(host,"root","x","DEMO" )
-        self.cursor = self.db.cursor()
+        try:
+            self.db = pymysql.connect(host,"root","x", "DEMO")
+            self.cursor = self.db.cursor()
+        except pymysql.err.InternalError:
+            dbb = pymysql.connect(host,"root","x")
+            sql = "create database DEMO"
+            c = dbb.cursor()
+            c.execute(sql)
+            dbb.close()
+            self.db = pymysql.connect(host,"root","x", "DEMO")
+            self.cursor = self.db.cursor()
+
 
     def createtable(self):
         try:
