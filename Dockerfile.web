@@ -1,0 +1,11 @@
+FROM docker.io/library/debian:latest
+
+RUN apt-get update && apt-get install -y python3 python3-pip python3-plotly python3-pymysql python3-netaddr python3-pyroute2 && pip3 install dash dash_core_components dash_html_components && apt-get clean all
+COPY graph.py /root/code/graph.py
+COPY db.py /root/code/db.py
+COPY socketfinder.py /root/code/socketfinder.py
+
+WORKDIR /root/code
+ENTRYPOINT ["python3", "/root/code/graph.py"]
+
+LABEL RUN="podman run -dt -p 8050:8050 IMAGE"

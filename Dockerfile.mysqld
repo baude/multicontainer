@@ -1,0 +1,3 @@
+FROM docker.io/library/mariadb:latest
+LABEL RUN="podman run --name some-mariadb -P -e MYSQL_ROOT_PASSWORD=x -dt IMAGE"
+RUN echo "bind-address = 0.0.0.0" >> /etc/mysql/my.cnf
