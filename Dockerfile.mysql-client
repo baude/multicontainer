@@ -7,3 +7,4 @@ COPY generatenums.py /root/code/generatenums.py
 WORKDIR /root/code
 
 LABEL RUN="podman run -dt --name demogen IMAGE python3 generatenums.py"
+LABEL POD="podman run -dt --pod new:demogen IMAGE python3 generatenums.py"
