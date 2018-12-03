@@ -6,4 +6,4 @@ COPY socketfinder.py /root/code/socketfinder.py
 COPY generatenums.py /root/code/generatenums.py
 WORKDIR /root/code
 
-LABEL RUN="podman run -dt --name demoweb IMAGE python3 generatenums.py"
+LABEL RUN="podman run -dt --name demogen IMAGE python3 generatenums.py"
