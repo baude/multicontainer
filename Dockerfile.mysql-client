@@ -8,3 +8,5 @@ WORKDIR /root/code
 
 LABEL RUN="podman run -dt --name demogen IMAGE python3 generatenums.py"
 LABEL POD="podman run -dt --pod new:demogen IMAGE python3 generatenums.py"
+ENTRYPOINT ["python3", "/root/code/generatenums.py"]
+
