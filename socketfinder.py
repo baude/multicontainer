@@ -39,11 +39,17 @@ def findmysqlthreaded(port, ipn):
     global host
     queue = Queue()
 
-    for w in range(50):
-        worker = SocketFinder(queue)
-        worker.daemon = True
-        worker.start()
-    for i in ipn:
-        queue.put(("{}".format(i), port))
-    queue.join()
+    counter = 0
+    while host == "":
+        if counter == 6:
+            break
+        for w in range(50):
+            worker = SocketFinder(queue)
+            worker.daemon = True
+            worker.start()
+        for i in ipn:
+            queue.put(("{}".format(i), port))
+        queue.join()
+        counter = counter + 1
+
     return host
