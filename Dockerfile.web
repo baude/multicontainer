@@ -6,7 +6,8 @@ COPY db.py /root/code/db.py
 COPY socketfinder.py /root/code/socketfinder.py
 
 WORKDIR /root/code
-ENTRYPOINT ["python3", "/root/code/graph.py"]
+#ENTRYPOINT ["python3", "/root/code/graph.py"]
+CMD ["python3", "/root/code/graph.py"]
 
 LABEL RUN="podman run --name demoweb -dt -p 8050:8050 IMAGE"
 LABEL POD="podman run --pod new:demoweb -dt -p 8050:8050 IMAGE"

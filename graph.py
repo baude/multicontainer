@@ -1,5 +1,5 @@
 import dash
-from dash.dependencies import Output, Event
+from dash.dependencies import Output, Input
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly
@@ -33,14 +33,16 @@ app.layout = html.Div(
         dcc.Graph(id='live-graph', animate=True),
         dcc.Interval(
             id='graph-update',
-            interval=1*1000
+            interval=1*1000,
+            n_intervals=0
         ),
     ]
 )
 
 @app.callback(Output('live-graph', 'figure'),
-              events=[Event('graph-update', 'interval')])
-def update_graph_scatter():
+              #events=[Event('graph-update', 'interval')])
+              [Input('graph-update', 'n_intervals')])
+def update_graph_scatter(n):
     db = DBDemo(host, port)
     global lastid
     for k, v in db.getresultsfromid(lastid):

@@ -43,7 +43,7 @@ def findmysqlthreaded(port, ipn):
     while host == "":
         if counter == 6:
             break
-        for w in range(50):
+        for w in range(200):
             worker = SocketFinder(queue)
             worker.daemon = True
             worker.start()
